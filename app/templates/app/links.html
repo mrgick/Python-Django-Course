@@ -1,0 +1,10 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<a href ="https://www.dns-shop.ru/" target="_blank"> <img src="{% static 'app/content/logo_dns.png' %}" alt="DNS"/></a>
+<a href ="https://www.citilink.ru/" target="_blank"> <img src="{% static 'app/content/logo_citilink.png' %}" alt="Ситилинк"/></a>
+<a href ="https://www.eldorado.ru/" target="_blank"> <img src="{% static 'app/content/logo_eldorado.png' %}" alt="Эльдорадо"/></a>
+
+{% endblock %}
