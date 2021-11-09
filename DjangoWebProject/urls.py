@@ -9,6 +9,9 @@ import django.contrib.auth.views
 import app.forms
 import app.views
 
+from django.conf.urls import include
+from django.contrib import admin
+
 # Uncomment the next lines to enable the admin:
 # from django.conf.urls import include
 # from django.contrib import admin
@@ -22,6 +25,7 @@ urlpatterns = [
     url(r'^links$', app.views.links, name='links'),
 	url(r'^purchase$', app.views.purchase, name='purchase'),
     url(r'^registration$', app.views.registration, name='registration'),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
@@ -47,3 +51,5 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 ]
+
+admin.autodiscover()
