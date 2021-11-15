@@ -29,6 +29,14 @@
             <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="{% url 'links' %}">Ссылки</a></li>
             <li><a href="{% url 'purchase' %}">Оплата</a></li>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'newpost' %}">Добавить запись</a></li>
+            {% endif %}
+            <li><a href="{% url 'blog' %}">Блог</a></li>
+            {% if not user.is_authenticated %} <
+            <li><a href="{% url 'registration' %}">Регистрация</a></li>
+            {% endif %}
+            <li><a href="{% url 'videopost' %}">Видео-ролики</a></li>
             {% if not user.is_authenticated %}
             <li><a href="{% url 'registration' %}">Регистрация</a></li>
             {% endif %}

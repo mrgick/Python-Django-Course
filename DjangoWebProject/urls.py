@@ -1,16 +1,19 @@
-"""
-Definition of urls for DjangoWebProject.
-"""
-
 from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
+from django.views.generic.base import RedirectView
 
 import app.forms
 import app.views
 
+# Uncomment the next lines to enable the admin:
 from django.conf.urls import include
 from django.contrib import admin
+admin.autodiscover()
+
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 # Uncomment the next lines to enable the admin:
 # from django.conf.urls import include
@@ -24,8 +27,12 @@ urlpatterns = [
     url(r'^about$', app.views.about, name='about'),
     url(r'^links$', app.views.links, name='links'),
 	url(r'^purchase$', app.views.purchase, name='purchase'),
-    url(r'^registration$', app.views.registration, name='registration'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^blog', app.views.blog, name='blog'),
+    url(r'^(?P<parametr>\d+)/$', app.views.blogpost, name='blogpost'),
+    url(r'newpost', app.views.newpost, name='newpost'),
+    url(r'videopost', app.views.videopost, name='videopost'),
+    url(r'^registration$', app.views.registration, name='registration'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
@@ -52,4 +59,5 @@ urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
 ]
 
-admin.autodiscover()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
